@@ -16,6 +16,11 @@ df1 = pd.read_csv("data/All_Data_LMM.csv", parse_dates=True, na_values=["NAN"])
 print("CSV row count:", len(df1))
 print(df1)
 
+test = px.box(df1, x="Tillage", y="Protein_kg_ha", points="all")
+test.write_image("debug.png")    # locally this writes a file you can inspect
+print("Test figure for Protein_kg_ha on Tillage saved—check debug.png")
+
+
 df1['ID']=df1['Tillage'].astype(str)+"_"+df1['Fertilizer'].astype(str)+"_"+df1['Cover'].astype(str)
 
 var_names = df1.columns[6:52].tolist()
@@ -98,11 +103,17 @@ def update_plot(y_var, group1, group2, rep):
     else:
         x_col = group1
 
-    print("Plotting:", y_var, "vs", group1, "+", group2)
-    print("Data types:", df1[y_var].dtype, df1[group1].dtype)
-    print("Unique values in group1:", df1[group1].unique())
-    print("Sample values:", df1[[group1, y_var]].dropna().head())
-
+    # *** DEBUGGING START ***
+    print(">>> dff.shape:", dff.shape)
+    print(">>> dff columns sample:", dff.columns.tolist()[:8], "…", dff.columns.tolist()[-3:])
+    print(f">>> dff[{x_col}, {y_var}] head:\n", dff[[x_col, y_var]].head(10))
+    print(f">>> dtype of y_var in dff:", dff[y_var].dtype)
+    print(f">>> unique values of y_var in dff:", dff[y_var].unique()[:10])
+    # *** DEBUGGING END ***
+    
+    dff[y_var] = pd.to_numeric(dff[y_var], errors="coerce")
+    dff = dff.dropna(subset=[y_var, x_col])
+    print(">>> after coercion/dropping nulls, dff.shape:", dff.shape)
 
     fig = px.box(dff,
                 x=x_col,
@@ -127,6 +138,7 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
