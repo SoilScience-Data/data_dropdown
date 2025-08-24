@@ -94,20 +94,23 @@ app.layout = dbc.Container([
 )
 def update_plot(y_var, group1, group2, rep):
     dff = df1.copy()
-    # no filtering, no interaction column
+    
+    
     fig = px.box(
-       dff,
-       x="Tillage",     # a known numeric categorical
-       y="AMF_PC",      # a known numeric float column
-       points="all"
+        df1,
+        x="Tillage",
+        y="AMF_PC",
+        points="all",
+        title="STUB: Tillage vs AMF_PC"
     )
-    print(">>> raw y:", fig.data[0].y)
+    print(">>> STUB y-values:", fig.data[0].y)
     return fig
 
 
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
