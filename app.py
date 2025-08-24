@@ -10,7 +10,7 @@ import pandas as pd
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])  # Try FLATLY, LUX, or CYBORG
 server = app.server
-
+server.config["BINARY_PLOTLY_JSON"] = False
 #excel_url = "https://raw.githubusercontent.com/SoilScience-Data/data_dropdown/240e1867bd9565874cf94586852d73ffb99470cd/All_Data_LMM.xlsx"
 df1 = pd.read_csv("data/All_Data_LMM.csv", na_values=["NAN"])
 print("CSV row count:", len(df1))
@@ -103,12 +103,13 @@ def update_plot(y_var, group1, group2, rep):
         title=f"Testing y_var: {y_var}"
     )
     print(">>> y_var float values:", fig.data[0].y)
-    return fig.to_dict()
+    return fig
 
 
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
