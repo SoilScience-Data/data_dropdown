@@ -103,12 +103,13 @@ def update_plot(y_var, group1, group2, rep):
         title=f"Testing y_var: {y_var}"
     )
     print(">>> y_var float values:", fig.data[0].y)
-    return fig
+    return fig.to_dict()
 
 
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
