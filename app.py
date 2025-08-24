@@ -88,7 +88,7 @@ app.layout = dbc.Container([
     Input("rep-dropdown", "value")
 )
 def update_plot(y_var, group1, group2, rep):
-    dff = df.copy()
+    dff = df1.copy()
     if rep != "All":
         dff = dff[dff["Replicate"] == rep]
 
@@ -121,6 +121,7 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
