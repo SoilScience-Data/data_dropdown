@@ -16,9 +16,9 @@ df1 = pd.read_csv("data/All_Data_LMM.csv", parse_dates=True, na_values=["NAN"])
 print("CSV row count:", len(df1))
 print(df1)
 
-test = px.box(df1, x="Tillage", y="Protein_kg_ha", points="all")
-test.write_image("debug.png")    # locally this writes a file you can inspect
-print("Test figure for Protein_kg_ha on Tillage saved—check debug.png")
+#test = px.box(df1, x="Tillage", y="Protein_kg_ha", points="all")
+#test.write_image("debug.png")    # locally this writes a file you can inspect
+#print("Test figure for Protein_kg_ha on Tillage saved—check debug.png")
 
 
 df1['ID']=df1['Tillage'].astype(str)+"_"+df1['Fertilizer'].astype(str)+"_"+df1['Cover'].astype(str)
@@ -138,6 +138,7 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
