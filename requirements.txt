@@ -3,8 +3,8 @@ pandas
 ipywidgets
 cufflinks
 plotly.express
-IPython.display
 dash.dependencies
 dash_bootstrap_components
 
 gunicorn
+
