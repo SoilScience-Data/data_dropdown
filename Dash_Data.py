@@ -8,6 +8,9 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
 
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])  # Try FLATLY, LUX, or CYBORG
+server = app.server
+
 excel_url = "https://github.com/SoilScience-Data/data_dropdown/blob/240e1867bd9565874cf94586852d73ffb99470cd/All_Data_LMM.xlsx"
 df1 = pd.read_excel(excel_url, error_bad_lines=False,
                    parse_dates=True, na_values={"NAN"})
@@ -25,8 +28,7 @@ var_names = df.columns[6:52].tolist()
 group_vars = ["ID", "Tillage", "Fertilizer", "Cover", "No_Pract"]
 replicates = sorted(df["Replicate"].unique())
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])  # Try FLATLY, LUX, or CYBORG
-server = app.server
+
 #app.layout = dbc.Container([
 #    html.H2("Interactive Plots", className="text-center my-4"),
 #    dbc.Row([
@@ -118,5 +120,6 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
