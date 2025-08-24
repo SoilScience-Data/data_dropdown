@@ -1,0 +1,10 @@
+dash==2.9.3
+pandas
+ipywidgets
+cufflinks
+plotly.express
+plotly.graph_objects
+IPython.display
+dash.dependencies
+dash_bootstrap_components
+gunicorn
