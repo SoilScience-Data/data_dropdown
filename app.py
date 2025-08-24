@@ -23,10 +23,8 @@ print(df1)
 
 df1['ID']=df1['Tillage'].astype(str)+"_"+df1['Fertilizer'].astype(str)+"_"+df1['Cover'].astype(str)
 
-var_names = df1.columns[6:52].tolist()
-group_vars = ["ID", "Tillage", "Fertilizer", "Cover", "No_Pract"]
-
-
+#var_names = df1.columns[6:52].tolist()
+#group_vars = ["ID", "Tillage", "Fertilizer", "Cover", "No_Pract"]
 
 # Beispiel-Daten
 df = df1.copy()
@@ -93,8 +91,9 @@ app.layout = dbc.Container([
     Input("rep-dropdown", "value")
 )
 def update_plot(y_var, group1, group2, rep):
-    dff = df1.copy()
     
+    print("🔥 DYNAMIC CALLBACK FIRED:", y_var, group1, group2, rep)
+    dff = df1.copy()
     
     fig = px.box(
         df1,
@@ -110,6 +109,7 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
