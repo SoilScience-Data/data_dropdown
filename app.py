@@ -94,51 +94,21 @@ app.layout = dbc.Container([
 )
 def update_plot(y_var, group1, group2, rep):
     dff = df1.copy()
-    if rep != "All":
-        dff = dff[dff["Replicate"] == rep]
-
-    if group2 != "None":
-        dff["Interaction"] = dff[group1].astype(str) + " | " + dff[group2].astype(str)
-        x_col = "Interaction"
-    else:
-        x_col = group1
-
-    # *** DEBUGGING START ***
-    print(">>> dff.shape:", dff.shape)
-    print(">>> dff columns sample:", dff.columns.tolist()[:8], "…", dff.columns.tolist()[-3:])
-    print(f">>> dff[{x_col}, {y_var}] head:\n", dff[[x_col, y_var]].head(10))
-    print(f">>> dtype of y_var in dff:", dff[y_var].dtype)
-    print(f">>> unique values of y_var in dff:", dff[y_var].unique()[:10])
-    # *** DEBUGGING END ***
-    
-    dff[y_var] = pd.to_numeric(dff[y_var], errors="coerce")
-    dff = dff.dropna(subset=[y_var, x_col])
-    print(">>> after coercion/dropping nulls, dff.shape:", dff.shape)
-
-    fig = px.box(dff,
-                x=x_col,
-                y=y_var,
-                color=group1 if group2 == "None" else "Interaction",
-                points="all",
-                title=f"{y_var} | {group1} + {group2} | Rep: {rep}")
-    print(">>> plotly sees these y-values:", fig.data[0].y)
-    fig.update_layout(
-        template="simple_white",
-        boxmode="group",
-        title_font=dict(size=30, family="Arial"),
-        xaxis_title=x_col,
-        yaxis_title=y_var,
-        margin=dict(t=60, b=120, l=40, r=20),
-        showlegend=True
-        )
-    fig.update_traces(marker=dict(size=6, opacity=0.6, line=dict(width=1, color='DarkSlateGrey')), jitter=0.3,boxmean="sd", width=0.5)
-
+    # no filtering, no interaction column
+    fig = px.box(
+       dff,
+       x="Tillage",     # a known numeric categorical
+       y="AMF_PC",      # a known numeric float column
+       points="all"
+    )
+    print(">>> raw y:", fig.data[0].y)
     return fig
 
 
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
