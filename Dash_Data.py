@@ -8,9 +8,8 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
 
-path = r"C:\Users\rikaa\bwSyncShare\Uni\WorldVeg\Data"
-
-df1 = pd.read_excel(path+"\All_Data_LMM.xlsx",
+excel_url = "https://github.com/SoilScience-Data/data_dropdown/blob/240e1867bd9565874cf94586852d73ffb99470cd/All_Data_LMM.xlsx"
+df1 = pd.read_excel(excel_url, error_bad_lines=False,
                    parse_dates=True, na_values={"NAN"})
 
 df1['ID']=df1['Tillage'].astype(str)+"_"+df1['Fertilizer'].astype(str)+"_"+df1['Cover'].astype(str)
@@ -119,4 +118,5 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
