@@ -99,17 +99,18 @@ def update_plot(y_var, group1, group2, rep):
     fig = px.box(
         df1,
         x="Tillage",
-        y="AMF_PC",
+        y=y_var,            # ← dynamic here
         points="all",
-        title="STUB: Tillage vs AMF_PC"
+        title=f"Testing y_var: {y_var}"
     )
-    print(">>> STUB y-values:", fig.data[0].y)
+    print(">>> y_var float values:", fig.data[0].y)
     return fig
 
 
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
