@@ -98,6 +98,12 @@ def update_plot(y_var, group1, group2, rep):
     else:
         x_col = group1
 
+    print("Plotting:", y_var, "vs", group1, "+", group2)
+    print("Data types:", df1[y_var].dtype, df1[group1].dtype)
+    print("Unique values in group1:", df1[group1].unique())
+    print("Sample values:", df1[[group1, y_var]].dropna().head())
+
+
     fig = px.box(dff,
                 x=x_col,
                 y=y_var,
@@ -121,6 +127,7 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
