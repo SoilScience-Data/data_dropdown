@@ -9,8 +9,9 @@ import plotly.express as px
 import pandas as pd
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])  # Try FLATLY, LUX, or CYBORG
+app.config.use_binary_json = False
 server = app.server
-server.config["BINARY_PLOTLY_JSON"] = False
+
 #excel_url = "https://raw.githubusercontent.com/SoilScience-Data/data_dropdown/240e1867bd9565874cf94586852d73ffb99470cd/All_Data_LMM.xlsx"
 df1 = pd.read_csv("data/All_Data_LMM.csv", na_values=["NAN"])
 print("CSV row count:", len(df1))
@@ -109,6 +110,7 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
