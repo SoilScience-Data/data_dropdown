@@ -4,4 +4,5 @@ ipywidgets
 cufflinks
 plotly.express
 dash_bootstrap_components
+openpyxl
 gunicorn
