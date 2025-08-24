@@ -5,5 +5,6 @@ cufflinks
 plotly==5.9.0
 dash_bootstrap_components
 gunicorn
+numpy==1.23.5
 
 
