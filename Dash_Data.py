@@ -1,7 +1,6 @@
 import ipywidgets as widgets
 from ipywidgets import interact, interact_manual
 import cufflinks as cf
-import plotly.graph_objects as go
 from IPython.display import display
 import dash
 from dash import dcc, html
@@ -119,4 +118,5 @@ def update_plot(y_var, group1, group2, rep):
 
 
 if __name__ == "__main__":
+
     app.run(debug=True)
