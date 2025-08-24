@@ -7,12 +7,9 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
+import json
 
-app = dash.Dash(
-    __name__,
-    external_stylesheets=[dbc.themes.FLATLY],
-    use_binary_json=False      # ← turn off binary JSON here
-    )
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 server = app.server
 
 #excel_url = "https://raw.githubusercontent.com/SoilScience-Data/data_dropdown/240e1867bd9565874cf94586852d73ffb99470cd/All_Data_LMM.xlsx"
@@ -138,11 +135,12 @@ def update_plot(y_var, group1, group2, rep):
         )
     fig.update_traces(marker=dict(size=6, opacity=0.6, line=dict(width=1, color='DarkSlateGrey')), jitter=0.3,boxmean="sd", width=0.5)
 
-    return fig.to_dict()
+    return json.loads(fig.to_json())
 
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
