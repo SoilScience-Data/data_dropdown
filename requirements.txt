@@ -1,8 +1,9 @@
-dash==2.9.3
+dash==3.2.0
 pandas
 ipywidgets
 cufflinks
-plotly.express
+plotly==5.9.0
 dash_bootstrap_components
 gunicorn
+
 
