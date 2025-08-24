@@ -13,6 +13,7 @@ server = app.server
 
 #excel_url = "https://raw.githubusercontent.com/SoilScience-Data/data_dropdown/240e1867bd9565874cf94586852d73ffb99470cd/All_Data_LMM.xlsx"
 df1 = pd.read_csv("data/All_Data_LMM.csv", parse_dates=True, na_values=["NAN"])
+print("CSV row count:", len(df1))
 print(df1)
 
 df1['ID']=df1['Tillage'].astype(str)+"_"+df1['Fertilizer'].astype(str)+"_"+df1['Cover'].astype(str)
@@ -120,6 +121,7 @@ def update_plot(y_var, group1, group2, rep):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
